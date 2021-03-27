@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Hackaton</string>
+    <string name="label_select_service">Выбор услуги</string>
+</resources>

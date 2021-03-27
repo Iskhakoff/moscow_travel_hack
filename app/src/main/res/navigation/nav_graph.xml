@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main_fragment">
+
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="ru.iskhakoff.hackaton.presentation.fragment.ServiceFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/fragment_service"/>
+
+    <navigation android:id="@+id/sub_nav_graph"
+        app:startDestination="@id/service_fragment">
+        <fragment
+            android:id="@+id/confirm_fragment"
+            android:name="ru.iskhakoff.hackaton.presentation.fragment.ConfirmFragment"
+            android:label="confirm_fragment" />
+        <fragment
+            android:id="@+id/contacts_fragment"
+            android:name="ru.iskhakoff.hackaton.presentation.fragment.ContactsFragment"
+            android:label="contacts_fragment" />
+        <fragment
+            android:id="@+id/additionally_fragment"
+            android:name="ru.iskhakoff.hackaton.presentation.fragment.AdditionallyFragment"
+            android:label="additionally_fragment" />
+        <fragment
+            android:id="@+id/service_fragment"
+            android:name="ru.iskhakoff.hackaton.presentation.fragment.ServiceFragment"
+            android:label="service_fragment" />
+        <fragment
+            android:id="@+id/in_out_info_fragment"
+            android:name="ru.iskhakoff.hackaton.presentation.fragment.InOutInfoFragment"
+            android:label="in_out_info_fragment" />
+        <action
+            android:id="@+id/action_global_success_fragment2"
+            app:destination="@id/success_fragment" />
+    </navigation>
+
+    <fragment
+        android:id="@+id/success_fragment"
+        android:name="ru.iskhakoff.hackaton.presentation.fragment.SuccessFragment"
+        android:label="success_fragment"/>
+
+</navigation>
