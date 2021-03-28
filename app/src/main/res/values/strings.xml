@@ -3,4 +3,16 @@
     <string name="label_select_service">Выбор услуги</string>
     <string name="confirm">Подтвердить</string>
     <string name="options_label">Опции</string>
+    <string name="departure_radio_label">Вылет</string>
+    <string name="arrival_radio_label">Прилет</string>
+    <string name="select_date_label">Выберите дату</string>
+    <string name="flight_label">Рейс</string>
+    <string name="do_not_know_flight_number">Не знаю рейс</string>
+    <string name="number_flight">Номер рейса</string>
+    <string name="full_name">ФИО</string>
+    <string name="email">E-mail</string>
+    <string name="phone">Телефон</string>
+    <string name="success_confirm">Вы успешно зарегистрировали услугу!</string>
+    <string name="not_provided_service">Данный аэропорт не предоставляет данную услугу</string>
+    <string name="returned">Вернуться</string>
 </resources>

@@ -3,9 +3,14 @@ package ru.iskhakoff.hackaton.presentation.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ru.iskhakoff.hackaton.R
+import ru.iskhakoff.hackaton.presentation.adapter.StepsAdapter
 
 class MainActivity : AppCompatActivity() {
 

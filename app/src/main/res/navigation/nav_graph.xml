@@ -45,4 +45,9 @@
         android:name="ru.iskhakoff.hackaton.presentation.fragment.AirportFragment"
         android:label="airport_info"/>
 
+    <fragment
+        android:id="@+id/not_provided"
+        android:name="ru.iskhakoff.hackaton.presentation.fragment.ServiceNotProviderDialog"
+        android:label="not_provided_fragment"/>
+
 </navigation>

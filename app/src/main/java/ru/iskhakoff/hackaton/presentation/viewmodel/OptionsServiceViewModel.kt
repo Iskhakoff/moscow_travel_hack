@@ -4,10 +4,8 @@ import android.text.BoringLayout
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.DisposableHandle
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import ru.iskhakoff.hackaton.App
 import ru.iskhakoff.hackaton.data.remote.ApiProvider
 import ru.iskhakoff.hackaton.data.remote.model.request.ServicesId
 import ru.iskhakoff.hackaton.data.remote.model.response.Option
@@ -22,7 +20,12 @@ class OptionsServiceViewModel(private val apiProvider: ApiProvider, private val 
         SingleLiveEvent()
     }
 
+    private val stateProvidedLiveData : SingleLiveEvent<Boolean> by lazy {
+        SingleLiveEvent()
+    }
+
     fun getOptionsServiceObservable() : LiveData<List<Option>> = optionsServiceLiveData
+    fun getStateProvidedObservable() : LiveData<Boolean> = stateProvidedLiveData
 
     fun setOptionsService(options : List<Option>) {
         optionsList.clear()
@@ -36,17 +39,30 @@ class OptionsServiceViewModel(private val apiProvider: ApiProvider, private val 
     }
 
     fun sendServicesIds(mainServiceId : Int, subServicesIds : Set<Int>) {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO).launch(handler) {
             val listIds = mutableListOf<Int>()
             listIds.add(mainServiceId)
             listIds.addAll(subServicesIds)
             val servicesId = ServicesId(listIds)
             val tokenResponse = apiProvider.sendServicesIds(servicesId)
-            if (tokenResponse.isSuccessful) {
+
+            if(tokenResponse.code() == 404) {
+                stateProvidedLiveData.postValue(false)
+            } else {
                 tokenResponse.body()?.let {
+                    prefsProvider.removeTokenOrder()
                     prefsProvider.setTokenOrder(it.token)
+                    stateProvidedLiveData.postValue(true)
+                } ?: run {
+                    stateProvidedLiveData.postValue(false)
                 }
             }
+
+
         }
+    }
+
+    private val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
+        stateProvidedLiveData.postValue(false)
     }
 }

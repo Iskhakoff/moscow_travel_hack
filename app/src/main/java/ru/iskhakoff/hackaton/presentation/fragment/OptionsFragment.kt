@@ -20,6 +20,7 @@ import ru.iskhakoff.hackaton.data.remote.model.response.Service
 import ru.iskhakoff.hackaton.data.storage.PrefsProvider
 import ru.iskhakoff.hackaton.data.storage.impl.PrefsProviderImpl
 import ru.iskhakoff.hackaton.presentation.adapter.OptionsServiceAdapter
+import ru.iskhakoff.hackaton.presentation.adapter.decoration.DefaultItemDecoration
 import ru.iskhakoff.hackaton.presentation.helper.OptionsServiceViewModelFactory
 import ru.iskhakoff.hackaton.presentation.viewmodel.OptionsServiceViewModel
 
@@ -78,9 +79,16 @@ class OptionsFragment : Fragment(), OptionsServiceAdapter.ISelectedItem{
             adapter.submitList(it)
         })
 
+        mViewModel.getStateProvidedObservable().observe(viewLifecycleOwner, {
+            if(!it){
+                findNavController().navigate(R.id.not_provided)
+            } else {
+                findNavController().navigate(R.id.flight)
+            }
+        })
+
         mConfirm.setOnClickListener {
             mViewModel.sendServicesIds(app.getMainServiceId(), app.getSubServicesIds())
-            findNavController().navigate(R.id.flight)
         }
 
         return rootView
@@ -94,6 +102,7 @@ class OptionsFragment : Fragment(), OptionsServiceAdapter.ISelectedItem{
         adapter = OptionsServiceAdapter(layoutInflater, this)
         val lm = LinearLayoutManager(requireContext())
         mRecycler.layoutManager = lm
+        mRecycler.addItemDecoration(DefaultItemDecoration(resources.getDimension(R.dimen.default_margin).toInt()))
         mRecycler.isNestedScrollingEnabled = false
         mRecycler.itemAnimator = null
         mRecycler.adapter = adapter

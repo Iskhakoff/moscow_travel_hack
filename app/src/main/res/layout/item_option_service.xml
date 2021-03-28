@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="Коляска"
+            android:textColor="@color/black"
             />
 
         <TextView
@@ -28,7 +29,7 @@
             tools:text="Сопровождение с подготовленной коляской"
             android:layout_below="@id/title_option_service"
             android:layout_marginTop="16dp"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
     </RelativeLayout>
 

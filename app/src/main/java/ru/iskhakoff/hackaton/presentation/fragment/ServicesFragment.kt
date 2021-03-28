@@ -53,6 +53,10 @@ class ServicesFragment : Fragment(), ServicesAdapter.IClickService {
             adapter.submitList(it)
         })
 
+        mViewModel.getStateProvidedObservable().observe(viewLifecycleOwner, {
+            findNavController().navigate(R.id.not_provided)
+        })
+
         mViewModel.getServiceObservable().observe(viewLifecycleOwner, {
             val bundle = OptionsFragment.setBundle(it)
             findNavController().navigate(R.id.options, bundle)

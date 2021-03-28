@@ -50,6 +50,7 @@ class OptionsServiceAdapter(private val inflater: LayoutInflater,
                 parentContainer.setBackgroundColor(ContextCompat.getColor(inflater.context, R.color.white))
             }
             titleOption.text = option.name
+            descriptionOption.text = option.description
 
             itemView.setOnClickListener {
                 listener.selectedItem(layoutPosition)

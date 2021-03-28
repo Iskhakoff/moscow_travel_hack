@@ -1,5 +1,6 @@
 package ru.iskhakoff.hackaton.presentation.viewmodel
 
+import android.text.BoringLayout
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,17 +21,26 @@ class ServicesViewModel(private val apiProvider: ApiProvider, private val prefsP
         MutableLiveData()
     }
 
+    private val stateProvidedLiveData : SingleLiveEvent<Boolean> by lazy {
+        SingleLiveEvent()
+    }
+
     private val serviceLiveData : SingleLiveEvent<Service> by lazy {
         SingleLiveEvent()
     }
 
     fun getServicesObservable() : LiveData<List<Service>> = servicesLiveData
     fun getServiceObservable() : LiveData<Service> = serviceLiveData
+    fun getStateProvidedObservable() : LiveData<Boolean> = stateProvidedLiveData
 
     fun getServices(){
         CoroutineScope(Dispatchers.IO).launch {
             val servicesResponse = apiProvider.getServices()
-            servicesLiveData.postValue(servicesResponse.body())
+            if (servicesResponse.code() == 404) {
+                stateProvidedLiveData.postValue(false)
+            } else {
+                servicesLiveData.postValue(servicesResponse.body())
+            }
         }
     }
 

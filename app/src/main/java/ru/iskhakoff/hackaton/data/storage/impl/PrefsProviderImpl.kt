@@ -15,9 +15,16 @@ class PrefsProviderImpl(context : Context) : PrefsProvider {
         preferences.edit().putString(PREF_KEY_ORDER_TOKEN, tokenOrder).apply()
     }
 
-    override fun getTokenOrder(): String? {
-        return preferences.getString(PREF_KEY_ORDER_TOKEN, null)
+    override fun getTokenOrder(): String {
+        preferences.getString(PREF_KEY_ORDER_TOKEN, null)?.let{
+            return it
+        } ?: run {
+            return ""
+        }
     }
 
+    override fun removeTokenOrder() {
+        preferences.edit().clear().apply()
+    }
 
 }
