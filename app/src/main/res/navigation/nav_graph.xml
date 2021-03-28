@@ -3,44 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/main_fragment">
+    app:startDestination="@id/services">
 
     <fragment
-        android:id="@+id/main_fragment"
-        android:name="ru.iskhakoff.hackaton.presentation.fragment.ServiceFragment"
-        android:label="main_fragment"
-        tools:layout="@layout/fragment_service"/>
-
-    <navigation android:id="@+id/sub_nav_graph"
-        app:startDestination="@id/service_fragment">
-        <fragment
-            android:id="@+id/confirm_fragment"
-            android:name="ru.iskhakoff.hackaton.presentation.fragment.ConfirmFragment"
-            android:label="confirm_fragment" />
-        <fragment
-            android:id="@+id/contacts_fragment"
-            android:name="ru.iskhakoff.hackaton.presentation.fragment.ContactsFragment"
-            android:label="contacts_fragment" />
-        <fragment
-            android:id="@+id/additionally_fragment"
-            android:name="ru.iskhakoff.hackaton.presentation.fragment.AdditionallyFragment"
-            android:label="additionally_fragment" />
-        <fragment
-            android:id="@+id/service_fragment"
-            android:name="ru.iskhakoff.hackaton.presentation.fragment.ServiceFragment"
-            android:label="service_fragment" />
-        <fragment
-            android:id="@+id/in_out_info_fragment"
-            android:name="ru.iskhakoff.hackaton.presentation.fragment.InOutInfoFragment"
-            android:label="in_out_info_fragment" />
-        <action
-            android:id="@+id/action_global_success_fragment2"
-            app:destination="@id/success_fragment" />
-    </navigation>
+        android:id="@+id/services"
+        android:name="ru.iskhakoff.hackaton.presentation.fragment.ServicesFragment"
+        android:label="services_list"/>
 
     <fragment
-        android:id="@+id/success_fragment"
+        android:id="@+id/options"
+        android:name="ru.iskhakoff.hackaton.presentation.fragment.OptionsFragment"
+        android:label="options_list"/>
+
+    <fragment
+        android:id="@+id/flight"
+        android:name="ru.iskhakoff.hackaton.presentation.fragment.FlightFragment"
+        android:label="flight_info"/>
+
+    <fragment
+        android:id="@+id/additional_info"
+        android:name="ru.iskhakoff.hackaton.presentation.fragment.AdditionalServiceFragment"
+        android:label="additional_info"/>
+
+    <fragment
+        android:id="@+id/contacts_info"
+        android:name="ru.iskhakoff.hackaton.presentation.fragment.ContactsFragment"
+        android:label="contacts_info"/>
+
+    <fragment
+        android:id="@+id/confirm_info"
+        android:name="ru.iskhakoff.hackaton.presentation.fragment.ConfirmFragment"
+        android:label="confirm_info"/>
+
+    <fragment
+        android:id="@+id/success_info"
         android:name="ru.iskhakoff.hackaton.presentation.fragment.SuccessFragment"
-        android:label="success_fragment"/>
+        android:label="success_info"/>
+
+    <fragment
+        android:id="@+id/airport_info"
+        android:name="ru.iskhakoff.hackaton.presentation.fragment.AirportFragment"
+        android:label="airport_info"/>
 
 </navigation>

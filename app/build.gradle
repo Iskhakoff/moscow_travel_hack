@@ -73,7 +73,9 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
-//    Stepper
-    implementation 'com.github.acefalobi:android-stepper:0.2.1'
+//    Recycler
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+//    CardView
+    implementation "androidx.cardview:cardview:1.0.0"
 
 }

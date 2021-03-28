@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 class RetrofitFactory {
 
     companion object {
-        private const val BASE_URL = ""
+        private const val BASE_URL = "http://dme.kwel.ru/api/"
 
         private fun getOkHttpInstance() : OkHttpClient {
             val interceptor = HttpLoggingInterceptor()
@@ -22,13 +22,7 @@ class RetrofitFactory {
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
-                .addInterceptor(Interceptor {
-                    val request = it.request()
-                        .newBuilder()
-                        .addHeader("token", "")
-                        .build()
-                    it.proceed(request = request)
-                })
+                .addInterceptor(interceptor)
                 .build()
         }
 
